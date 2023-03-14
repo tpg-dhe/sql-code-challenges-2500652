@@ -16,10 +16,18 @@ WHERE KundenID = 64 AND Datum > '2022-05-20';
 
 
 -- Variante 2 - in einem Schritt zur Reservierung
-SELECT * FROM Reservierung
+SELECT * 
+FROM Reservierung
 JOIN Kunden ON Reservierung.KundenID = Kunden.KundenID
 WHERE Kunden.Vorname = 'Norby' AND Reservierung.Datum > '2022-05-20';
 
 
 -- Reservierung entfernen
-DELETE FROM Reservierung WHERE ReservierungsID = 1962;
+DELETE 
+FROM Reservierung 
+WHERE ReservierungsID = 1962;
+
+-- Besser ist jedoch ein Update um die Integrität der DB zu erhalten
+UPDATE Reservierung 
+SET Datum = NULL
+WHERE ReservierungsID = 1962;
